@@ -13,8 +13,9 @@ import org.json.JSONObject;
 //import android.util.Log;
 import android.os.Environment;
 
-import com.phonegap.api.Plugin;
-import com.phonegap.api.PluginResult;
+import org.apache.cordova.CordovaPlugin;
+import org.apache.cordova.CallbackContext;
+import org.apache.cordova.PluginResult;
 
 import io.github.pwlin.cordova.plugins.base64.Base64Plugin;
 
@@ -23,17 +24,17 @@ public class DataWriter extends CordovaPlugin {
 	
 
 	@Override
-	public PluginResult execute(String action, JSONArray args, String callbackId) {
+	public boolean execute(String action, JSONArray args, CallbackContext callbackContext) {
 
 
 		
 		if (!action.equals("writeToFile")) 
-			return new PluginResult(PluginResult.Status.INVALID_ACTION);
+			return new PluginResult(PluginResult.Status.INVALID_ACTION) != null;
 		
 		try {
 			
 			String fileContent = args.getString(0);
-			JSONObject params = args.getJSONObject(1);
+			JSONObject params = arg.getJSONObject(1);
 			
 			String fileName = params.has("fileName") ? params.getString("fileName"): "unknown_file";
 			
@@ -43,20 +44,20 @@ public class DataWriter extends CordovaPlugin {
 			
 			Boolean dataIsBase64Encoded = params.has("dataIsBase64Encoded") ? params.getBoolean("dataIsBase64Encoded") : true;
 			
-			return this._writeToFile(fileContent, dirName, fileName, overwrite, dataIsBase64Encoded, callbackId);
+			return this._writeToFile(fileContent, dirName, fileName, overwrite, dataIsBase64Encoded, callbackContext);
 			
 		} catch (JSONException e) {
 			e.printStackTrace();
-			return new PluginResult(PluginResult.Status.JSON_EXCEPTION, e.getMessage());
+			return new PluginResult(PluginResult.Status.JSON_EXCEPTION, e.getMessage()) != null;
 			
 		} catch (InterruptedException e) {
 			e.printStackTrace();
-			return new PluginResult(PluginResult.Status.ERROR, e.getMessage());
+			return new PluginResult(PluginResult.Status.ERROR, e.getMessage()) != null;
 		}
 	
 	}
 
-	private PluginResult _writeToFile(String fileContent, String dirName, String fileName, Boolean overwrite, Boolean dataIsBase64Encoded, String callbackId) throws InterruptedException, JSONException {
+	private Boolean _writeToFile(String fileContent, String dirName, String fileName, Boolean overwrite, Boolean dataIsBase64Encoded, CallbackContext callbackContext) throws InterruptedException, JSONException {
 		
 		try {
 			
@@ -92,14 +93,14 @@ public class DataWriter extends CordovaPlugin {
 			obj.put("fileName", fileName);
 			obj.put("dirName", dirName);
 			
-			return new PluginResult(PluginResult.Status.OK, obj);
+			return new PluginResult(PluginResult.Status.OK, obj) != null;
 			
 		}
 		catch (FileNotFoundException e) {
-			return new PluginResult(PluginResult.Status.ERROR, 404);
+			return new PluginResult(PluginResult.Status.ERROR, 404) != null;
 		}
 		catch (IOException e) {
-			return new PluginResult(PluginResult.Status.ERROR, e.getMessage());
+			return new PluginResult(PluginResult.Status.ERROR, e.getMessage()) != null;
 		}
 
 	}
