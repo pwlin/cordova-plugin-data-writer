@@ -26,6 +26,15 @@
 	</platform>
 
     <platform name="ios">
+		<config-file target="config.xml" parent="/*">
+			<feature name="DataWriter">
+				<param name="ios-package" value="DataWriter" />
+			</feature>
+		</config-file>
+		<source-file src="src/ios/Base64.m" />
+		<header-file src="src/ios/Base64.h" />
+		<source-file src="src/ios/BinaryFileWriter.m" />
+		<header-file src="src/ios/BinaryFileWriter.h" />
     </platform>
 
 </plugin>
