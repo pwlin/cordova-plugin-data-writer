@@ -1,7 +1,7 @@
-#import "BinaryFileWriter.h"
+#import "DataWriter.h"
 #import "Base64.h"
 
-@implementation BinaryFileWriter
+@implementation DataWriter
 
 - (void)writeToFile:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options {
     NSLog(@"writeToFile");

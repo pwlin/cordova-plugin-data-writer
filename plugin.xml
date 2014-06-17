@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
     xmlns:android="http://schemas.android.com/apk/res/android"
     id="io.github.pwlin.cordova.plugins.datawriter"
-    version="1.0.1">
+    version="1.0.2">
 
     <name>DataWriter</name>
     <description>A data Writer Plugin for Cordova.</description>
@@ -33,8 +33,8 @@
 		</config-file>
 		<source-file src="src/ios/Base64.m" />
 		<header-file src="src/ios/Base64.h" />
-		<source-file src="src/ios/BinaryFileWriter.m" />
-		<header-file src="src/ios/BinaryFileWriter.h" />
+		<source-file src="src/ios/DataWriter.m" />
+		<header-file src="src/ios/DataWriter.h" />
     </platform>
 
 </plugin>

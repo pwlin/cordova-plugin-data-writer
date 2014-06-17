@@ -2,7 +2,7 @@
 /*
 #import <PhoneGap/PGPlugin.h>
 */
-@interface BinaryFileWriter : /*PGPlugin*/CDVPlugin {}
+@interface DataWriter : /*PGPlugin*/CDVPlugin {}
 
 - (void)writeToFile:(NSMutableArray*)arguments withDict:(NSMutableDictionary*)options;
 @end
